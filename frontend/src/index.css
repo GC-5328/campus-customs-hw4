@@ -1,0 +1,1075 @@
+/* Campus Customs — clean store theme (see output/design.md) */
+
+:root {
+  /* Palette */
+  --bg: #f5f5f7; /* page */
+  --surface: #ffffff; /* cards, product page, chat panel */
+  --ink: #1d1d1f; /* text */
+  --muted: #6e6e73; /* secondary text, prices on cards, nav links */
+  --line: #d2d2d7; /* hairlines, pill borders */
+  --yale: #00356b; /* links, Shop / Add to bag buttons, active nav item, user chat bubble */
+  --yale-hover: #002a55;
+  --out: #8b1e3f; /* accent: out of stock ONLY */
+  --error: #d70015; /* form / request errors (kept separate from the out-of-stock accent) */
+
+  --radius: 18px;
+  --radius-sm: 12px;
+  --fade: 200ms ease; /* the only motion on the site */
+
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 17px;
+  line-height: 1.47;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: 1.3rem;
+}
+
+h3 {
+  font-size: 1.15rem;
+  letter-spacing: -0.015em;
+}
+
+a {
+  color: var(--yale);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--yale);
+  outline-offset: 3px;
+}
+
+.page {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+  animation: fade-in var(--fade);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.out-of-stock {
+  color: var(--out);
+}
+
+.error {
+  color: var(--error);
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- Buttons ---------- */
+
+.button {
+  display: inline-block;
+  background: var(--yale);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.6rem 1.35rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color var(--fade), opacity var(--fade);
+}
+
+.button:hover {
+  background: var(--yale-hover);
+  text-decoration: none;
+}
+
+.button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.button-large {
+  padding: 0.85rem 1.75rem;
+  font-size: 1.06rem;
+}
+
+.button-block {
+  width: 100%;
+}
+
+.button-secondary {
+  background: transparent;
+  color: var(--yale);
+  border: 1px solid var(--line);
+}
+
+.button-secondary:hover {
+  background: var(--surface);
+}
+
+.link-button,
+.text-button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--yale);
+  cursor: pointer;
+}
+
+.link-button:hover,
+.text-button:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Nav: sticky, white, slight blur, hairline ---------- */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.navbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+}
+
+.brand {
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.nav-links,
+.nav-account {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  font-size: 0.88rem;
+}
+
+.nav-account {
+  margin-left: auto;
+}
+
+.navbar a:not(.brand),
+.nav-text-button {
+  color: var(--muted);
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: color var(--fade);
+}
+
+.navbar a:not(.brand):hover,
+.nav-text-button:hover {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.navbar a.active {
+  color: var(--yale);
+}
+
+.nav-greeting {
+  color: var(--ink);
+}
+
+.bag-count {
+  display: inline-block;
+  min-width: 1.2rem;
+  margin-left: 0.35rem;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.72rem;
+  line-height: 1.2rem;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .navbar-inner {
+    height: auto;
+    padding: 0.6rem 1.25rem;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.25rem;
+  }
+  .nav-links {
+    order: 3;
+    width: 100%;
+  }
+  .nav-links,
+  .nav-account {
+    gap: 1.1rem;
+  }
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* ---------- Home: centered, lots of air ---------- */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 4.5rem 0 0;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+}
+
+.hero-sub {
+  margin: 1rem 0 2.25rem;
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  color: var(--muted);
+  letter-spacing: -0.01em;
+}
+
+.hero-image {
+  display: block;
+  width: min(560px, 100%);
+  margin-top: 4rem;
+  transition: opacity var(--fade);
+}
+
+.hero-image:hover {
+  opacity: 0.9;
+}
+
+.hero-image img {
+  width: 100%;
+  mix-blend-mode: multiply; /* white photo background melts into the page */
+}
+
+/* ---------- About / misc prose ---------- */
+
+.prose {
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 1.15rem;
+}
+
+.prose h1 {
+  margin-bottom: 1.5rem;
+}
+
+/* ---------- Products ---------- */
+
+.page > section > h1 {
+  margin-bottom: 1.5rem;
+}
+
+.search-bar {
+  position: relative;
+  max-width: 520px;
+  margin-bottom: 1rem;
+}
+
+.search-bar input {
+  width: 100%;
+  font: inherit;
+  font-size: 1rem;
+  padding: 0.7rem 2.6rem 0.7rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.search-bar input::placeholder {
+  color: var(--muted);
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: var(--yale);
+}
+
+.search-bar input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search-clear {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.type-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.chip {
+  font-size: 0.88rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color var(--fade), color var(--fade);
+}
+
+.chip:hover {
+  border-color: var(--ink);
+}
+
+.chip.active {
+  border-color: var(--yale);
+  color: var(--yale);
+}
+
+.page section > p.muted[aria-live] {
+  margin: 0 0 1.75rem;
+  font-size: 0.9rem;
+}
+
+/* Wide grid: 3 on desktop, 2 on tablet, 1 on mobile; big gaps */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem 2rem;
+}
+
+@media (max-width: 960px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.results-grid {
+  animation: fade-in var(--fade);
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  color: inherit;
+}
+
+.product-card:hover {
+  text-decoration: none;
+}
+
+.product-card-image {
+  aspect-ratio: 1 / 1;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-card-image img {
+  max-height: 100%;
+  object-fit: contain;
+  transition: opacity var(--fade);
+}
+
+/* Hover: only the image fades. No lift, no shadow. */
+.product-card:hover .product-card-image img {
+  opacity: 0.8;
+}
+
+.product-card-body {
+  padding: 0 1.5rem 1.6rem;
+}
+
+.product-card-body h3 {
+  margin-bottom: 0.3rem;
+}
+
+.price {
+  margin: 0 0 0.45rem;
+  color: var(--muted);
+}
+
+.product-card-desc {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.results-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.results-header h1 {
+  margin: 0.3rem 0 0.4rem;
+}
+
+.results-header .muted {
+  margin: 0;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 1rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+}
+
+.empty-state p {
+  margin: 0 0 0.5rem;
+}
+
+.empty-state .button {
+  margin-top: 1rem;
+}
+
+/* ---------- Product page ---------- */
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.product-detail {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 3.5rem;
+  align-items: start;
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 3rem;
+}
+
+.product-detail-image img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.product-detail-info h1 {
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+}
+
+.detail-price {
+  margin: 0.6rem 0 1.4rem;
+  font-size: 1.3rem;
+}
+
+.detail-description {
+  margin: 0 0 0.6rem;
+}
+
+.detail-colors {
+  margin: 0;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
+.detail-sizes {
+  margin-top: 2rem;
+}
+
+.detail-sizes h2 {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+@media (max-width: 860px) {
+  .product-detail {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1.75rem;
+  }
+}
+
+/* Sizes as quiet pills */
+.size-pills {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+
+.size-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 0.55rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color var(--fade);
+}
+
+.size-pill:hover:not(:disabled) {
+  border-color: var(--muted);
+}
+
+.size-pill.selected {
+  border-color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+
+.size-pill .size {
+  font-weight: 500;
+}
+
+.size-pill .qty {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* A size at 0: grey and struck, not clickable */
+.size-pill.sold-out,
+.size-pill:disabled {
+  background: var(--bg);
+  border-color: transparent;
+  color: #a1a1a6;
+  cursor: not-allowed;
+}
+
+.size-pill.sold-out .size {
+  text-decoration: line-through;
+}
+
+.size-pill.sold-out .qty {
+  color: var(--out);
+}
+
+.add-to-bag {
+  margin-top: 1.75rem;
+}
+
+.add-status {
+  min-height: 1.5em;
+  margin: 0.75rem 0 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+  text-align: center;
+  animation: fade-in var(--fade);
+}
+
+/* ---------- Bag ---------- */
+
+.bag {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.bag h1 {
+  margin-bottom: 2rem;
+}
+
+.bag-empty {
+  text-align: center;
+  padding-top: 3rem;
+}
+
+.bag-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--surface);
+  border-radius: var(--radius);
+}
+
+.bag-item {
+  display: grid;
+  grid-template-columns: 96px 1fr auto;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+}
+
+.bag-item + .bag-item {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.bag-item-name {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.bag-item-info p,
+.bag-item-side p {
+  margin: 0.2rem 0 0;
+}
+
+.bag-item-side {
+  text-align: right;
+}
+
+.bag-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.bag-note {
+  padding: 0 1.5rem;
+  font-size: 0.9rem;
+}
+
+/* ---------- Log in / Create account ---------- */
+
+.auth-card {
+  max-width: 440px;
+  margin: 1rem auto;
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+}
+
+.auth-card h1 {
+  font-size: 2rem;
+  margin-bottom: 1.75rem;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.auth-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  flex: 1;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-row label {
+  min-width: 0;
+}
+
+.auth-card input {
+  width: 100%;
+  font: inherit;
+  font-weight: 400;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.auth-card input:focus {
+  outline: none;
+  border-color: var(--yale);
+}
+
+.auth-card input[aria-invalid='true'] {
+  border-color: var(--error);
+}
+
+.auth-card .hint {
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.auth-card .hint.error,
+.auth-card p.error {
+  color: var(--error);
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+.auth-card .button {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+}
+
+.auth-card > p.muted {
+  margin: 1.5rem 0 0;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* ---------- Chat: small round Yale blue button, white panel ---------- */
+
+.chat-launcher {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 20;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: var(--yale);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+  transition: background-color var(--fade);
+}
+
+.chat-launcher:hover {
+  background: var(--yale-hover);
+}
+
+.chat-panel {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 20;
+  width: min(370px, calc(100vw - 2rem));
+  height: min(540px, calc(100vh - 6rem));
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.14);
+  overflow: hidden;
+  animation: fade-in var(--fade);
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg);
+  color: var(--ink);
+  padding: 0.85rem 1.1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.chat-header button {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.chat-header button:hover {
+  color: var(--ink);
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  background: var(--surface);
+}
+
+.chat-turn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  animation: fade-in var(--fade);
+}
+
+.chat-turn.user {
+  align-items: flex-end;
+}
+
+.chat-turn.assistant {
+  align-items: flex-start;
+}
+
+.chat-bubble {
+  max-width: 85%;
+  padding: 0.55rem 0.85rem;
+  border-radius: 18px;
+  font-size: 0.94rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+.chat-bubble.user {
+  background: #00356b;
+  color: #fff;
+}
+
+.chat-bubble.assistant {
+  background: #f5f5f7;
+  color: var(--ink);
+}
+
+/* Typing indicator: three dots that fade (no bounce) */
+.chat-bubble.typing {
+  display: flex;
+  gap: 4px;
+  padding: 0.8rem 0.9rem;
+}
+
+.chat-bubble.typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--muted);
+  animation: typing-fade 1.2s infinite ease-in-out;
+}
+
+.chat-bubble.typing span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.chat-bubble.typing span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing-fade {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.chat-products {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 85%;
+}
+
+.chat-product {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: var(--surface);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.6rem;
+  color: inherit;
+}
+
+.chat-product:hover {
+  text-decoration: none;
+}
+
+.chat-product:hover img {
+  opacity: 0.8;
+}
+
+.chat-product img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  flex-shrink: 0;
+  transition: opacity var(--fade);
+}
+
+.chat-product-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.chat-product-name {
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat-product-meta {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.chat-see-all {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  padding: 0.15rem 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--yale);
+  cursor: pointer;
+}
+
+.chat-see-all:hover {
+  text-decoration: underline;
+}
+
+.chat-input {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.chat-input input {
+  flex: 1;
+  font: inherit;
+  font-size: 0.94rem;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+}
+
+.chat-input input:focus {
+  outline: none;
+  border-color: var(--yale);
+}
+
+.chat-input button {
+  background: var(--yale);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity var(--fade);
+}
+
+.chat-input button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}

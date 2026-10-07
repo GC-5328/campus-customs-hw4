@@ -1,0 +1,40 @@
+# ---- Secrets: never commit ----
+.env
+.env.*
+!.env.example
+backend/.session_secret
+backend/test_account.json
+
+# ---- Data pack: not in the repo (see README "Data pack") ----
+*.db
+*.db-journal
+*.sqlite
+data/campus_customs.db
+data/products/
+data/products_web/
+*.jpg
+*.jpeg
+*.png
+*.webp
+# ...except the screenshots that document the app check
+!output/app_check_images/
+!output/app_check_images/*
+
+# ---- Python ----
+.venv/
+__pycache__/
+*.pyc
+backend/.audit.lock
+*.lock
+!package-lock.json
+output/audit_trail.json.tmp
+output/audit_trail.corrupt-*.json
+
+# ---- Node / Vite (frontend/.gitignore has the rest) ----
+node_modules/
+frontend/dist/
+
+# ---- OS / editor ----
+.DS_Store
+.vscode/
+.idea/
