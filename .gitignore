@@ -6,6 +6,10 @@ backend/.session_secret
 backend/test_account.json
 
 # ---- Data pack: not in the repo (see README "Data pack") ----
+campus_customs.db
+db/
+images/
+data/
 *.db
 *.db-journal
 *.sqlite

@@ -19,7 +19,9 @@ HW 4/
 ├── data/                  ← the data pack goes here (not in the repo)
 ├── output/                harness.md, usability.md, design.md, app_check.html, audit_trail.json
 ├── AI_prompts.md          Prompt log
-└── .env.example           Environment variables (placeholders only)
+├── requirements.txt       Python dependencies for the back end
+├── .env.example           Environment variables (placeholders only)
+└── .gitignore             Keeps .env, the database, and images out of git
 ```
 
 ## 1. Data pack (not in the repo)
@@ -45,7 +47,7 @@ cp .env.example .env
 First time only, from `HW 4/`: create the virtual environment (Python 3.12) and install dependencies.
 
 ```bash
-python3.12 -m venv .venv && .venv/bin/pip install -r backend/requirements.txt
+python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt
 ```
 
 First time only, from `HW 4/backend`: make the white-background web copies of the photos (writes `data/products_web/`; the originals aren't changed).
